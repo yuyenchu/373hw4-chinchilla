@@ -29,7 +29,7 @@ HashDictionary:
     - sh hw4-hash.sh
 
 
-IsValidAVLTree:
+IsValidAVL:
   stage: test
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-avltest.sh
