@@ -1,0 +1,46 @@
+image: gradle:jdk8
+
+before_script:
+  - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-build-gradle -O build.gradle
+
+stages:
+  - compile
+  - test
+  - stylecheck
+
+Compile:
+  stage: compile
+  script:
+    - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-compile.sh
+    - sh hw4-compile.sh
+
+
+DoubleLinkedlist:
+  stage: test
+  script:
+    - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-dll.sh
+    - sh hw4-dll.sh
+
+
+HashDictionary:
+  stage: test
+  script:
+    - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-hash.sh
+    - sh hw4-hash.sh
+
+
+IsValidAVLTree:
+  stage: test
+  script:
+    - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-avltest.sh
+    - sh hw4-avltest.sh
+  tags:
+    - gitlab05
+
+
+Stylecheck:
+  stage: stylecheck
+  script:
+    - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-stylecheck.sh
+    - sh hw4-stylecheck.sh
+
