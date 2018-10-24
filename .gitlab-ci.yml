@@ -6,7 +6,6 @@ before_script:
 stages:
   - compile
   - test
-  - stylecheck
 
 Compile:
   stage: compile
@@ -38,8 +37,8 @@ IsValidAVL:
     - gitlab05
 
 
-Stylecheck:
-  stage: stylecheck
+StyleCheck:
+  stage: test
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-stylecheck.sh
     - sh hw4-stylecheck.sh

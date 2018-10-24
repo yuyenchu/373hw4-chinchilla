@@ -104,9 +104,16 @@ testlogger {
 
 // Log stdout and stderr in tests
 test {
+
+    if (System.properties['test.profile'] == 'hash') {
+        exclude '**/*TestAvlTree*'
+        exclude '**/*TestDoubleLinkedList*'
+    }
+
+
     testLogging {
         events = ["passed", "skipped", "failed"]
-        showStandardStreams = true
+        showStandardStreams = false
         exceptionFormat = "full"
     }
 
@@ -124,20 +131,16 @@ checkstyleMain {
     source ='src/'
     // exclude '**/**'
 
-    if (System.properties['test.profile'] == 'part1') {
-        include '**/DoubleLinkedList.java'
-        include '**/ArrayDictionary.java'
-        include '**/TestDeleteFunctionality.java'
-        include '**/TestDeleteStress.java'
-    }
-
-    if (System.properties['test.profile'] == 'part2') {
-        include '**/ExpressionManipulators.java'
+    if (System.properties['test.profile'] == 'checkstyle') {
+        include '**/ArrayDictionary*'
+        include '**/ChainedHashSet*'
+        include '**/ChainedHashDictionary*'
+        include '**/TestAvlTree*'
     }
 
     reports {
         html.enabled = false
-        xml.enabled = true
+        xml.enabled = false
     }
 }
 

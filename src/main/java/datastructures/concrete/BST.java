@@ -1,12 +1,10 @@
 package datastructures.concrete;
 
 /**
- *
- * IMPORTANT NOTE: Do not change anything in this file.
- * You do not need to change anything in this file for the 'Testing isValidAVL' part.
- *
+ * IMPORTANT NOTE: Do not change anything in this file. You do not need to change anything in this file for the 'Testing
+ * isValidAVL' part.
+ * <p>
  * Changes in this file will be overwritten by our automated testing script.
- *
  */
 
 /**
@@ -14,14 +12,14 @@ package datastructures.concrete;
  */
 public class BST {
     private Node root;
-    
+
     /**
      * Creates an empty Binary Search Tree.
      */
     public BST() {
         root = null;
     }
-    
+
     /**
      * Creates a Binary Search Tree with the given values in an inorder
      * traversal order.
@@ -30,14 +28,14 @@ public class BST {
     public BST(int[] values) {
         insertAll(values);
     }
-    
+
     /**
      * @return the root Node
      */
     public Node getRoot() {
         return root;
     }
-    
+
     /**
      * Creates a Binary Search Tree with the given values in an inorder
      * traversal order.
@@ -49,14 +47,14 @@ public class BST {
             insert(values[i]);
         }
     }
-    
+
     /**
      * Empties the tree
      */
     public void reset() {
         root = null;
     }
-    
+
     /**
      * Inserts the given int into the Binary Search Tree
      * @param data an int to insert
@@ -67,7 +65,7 @@ public class BST {
             root = insert(data, root);
         }
     }
-    
+
     private Node insert(int data, Node node) {
         if (node == null) {
             node = new Node(data);
@@ -82,24 +80,24 @@ public class BST {
     public boolean contains(int data) {
         return contains(data, root);
     }
-    
-    private boolean contains(int data, Node root) {
-        if (root == null) {
+
+    private boolean contains(int data, Node node) {
+        if (node == null) {
             return false;
         }
-        
-        if (data > root.data) {
-            return contains(data, root.right);
-        } else if (data < root.data) {
-            return contains(data, root.left);
+
+        if (data > node.data) {
+            return contains(data, node.right);
+        } else if (data < node.data) {
+            return contains(data, node.left);
         }
         return true;
     }
-    
+
     public int height() {
         return height(root);
     }
-    
+
     private int height(Node node) {
         if (node == null) {
             return -1;
@@ -119,7 +117,7 @@ public class BST {
     private void inorder(Node node) {
         if (node != null) {
             inorder(node.left);
-            System.out.print(node.data +" ");
+            System.out.print(node.data + " ");
             inorder(node.right);
         }
     }
@@ -132,8 +130,8 @@ public class BST {
 
     private void preorder(Node node) {
         if (node != null) {
-            System.out.print(node.data +" ");
-            preorder(node.left);             
+            System.out.print(node.data + " ");
+            preorder(node.left);
             preorder(node.right);
         }
     }
@@ -146,12 +144,12 @@ public class BST {
 
     private void postorder(Node node) {
         if (node != null) {
-            postorder(node.left);             
+            postorder(node.left);
             postorder(node.right);
-            System.out.print(node.data +" ");
+            System.out.print(node.data + " ");
         }
     }
-    
+
     /**
      * Prints the tree contents, one per line, following an inorder traversal
      * and using indentation to indicate node depth; prints right to left so
@@ -174,13 +172,16 @@ public class BST {
             for (int i = 0; i < level; i++) {
                 System.out.print("    ");
             }
-            
+
             System.out.println(node.data);
             printSideways(node.left, level + 1);
         }
     }
-    
-    private void printTwoBlankLines() { System.out.println(); System.out.println(); }
+
+    private void printTwoBlankLines() {
+        System.out.println();
+        System.out.println();
+    }
 
 
     /**
@@ -207,12 +208,12 @@ public class BST {
 
         Node(int data) {
             this.data = data;
-            this.left = this.right = null;
+            this.left = null;
+            this.right = null;
         }
     }
 
 
-    
 }
 
 
