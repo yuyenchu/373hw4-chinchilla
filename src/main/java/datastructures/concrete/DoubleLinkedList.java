@@ -1,9 +1,10 @@
 package datastructures.concrete;
 
 import datastructures.interfaces.IList;
-import misc.exceptions.NotYetImplementedException;
+import misc.exceptions.EmptyContainerException;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * TODO: Replace this file with the one you wrote from project 1
