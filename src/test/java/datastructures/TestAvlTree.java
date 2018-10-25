@@ -8,7 +8,7 @@ public class TestAvlTree extends BaseTest {
 
     @Test(timeout = SECOND)
     public void testValidAVLTreeBasic() {
-        // Creates a Binary Search Tree using the given values in an inorder traversal order.
+        // Creates a Binary Search Tree using the given values provided in insertion order.
         BST tree = new BST(new int[]{2, 1, 3});
 
         // helper methods to print/see your BST
@@ -21,7 +21,7 @@ public class TestAvlTree extends BaseTest {
 
     @Test(timeout = SECOND)
     public void testInvalidAVLTreeBasic() {
-        // Creates a Binary Search Tree with the given values in an inorder traversal order.
+        // Creates a Binary Search Tree with the given values provided in insertion order.
         BST tree = new BST(new int[]{1, 2, 3});
         tree.insert(4);  // You can also add nodes to your BST using insert.
 

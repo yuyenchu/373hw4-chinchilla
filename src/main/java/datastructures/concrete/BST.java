@@ -21,8 +21,8 @@ public class BST {
     }
 
     /**
-     * Creates a Binary Search Tree with the given values in an inorder
-     * traversal order.
+     * Creates a Binary Search Tree with the given values provided in
+     * insertion order.
      * @param values an array containing the values for nodes in the BST
      */
     public BST(int[] values) {
@@ -37,8 +37,8 @@ public class BST {
     }
 
     /**
-     * Creates a Binary Search Tree with the given values in an inorder
-     * traversal order.
+     * Creates a Binary Search Tree with the given values provided in
+     * insertion order.
      * @param values an array containing the values for nodes in the BST
      * @return a node representing a BST containing the given values
      */
@@ -56,7 +56,7 @@ public class BST {
     }
 
     /**
-     * Inserts the given int into the Binary Search Tree
+     * Inserts the given int value into the Binary Search Tree
      * @param data an int to insert
      * @return a tree with the given value inserted
      */
@@ -77,6 +77,11 @@ public class BST {
         return node;
     }
 
+    /**
+     * Checks if the given int value exists in the Binary Search Tree
+     * @param data an int
+     * @return true if the given value exists and false otherwise
+     */
     public boolean contains(int data) {
         return contains(data, root);
     }
@@ -94,6 +99,9 @@ public class BST {
         return true;
     }
 
+    /**
+     * @return The height of the Binary Search Tree
+     */
     public int height() {
         return height(root);
     }
@@ -153,7 +161,7 @@ public class BST {
     /**
      * Prints the tree contents, one per line, following an inorder traversal
      * and using indentation to indicate node depth; prints right to left so
-     * that the tree looks correct when the output is rotated.
+     * that the tree looks correct when the output is rotated 90 degrees.
      */
     public void printSideways() {
         printSideways(root, 0);
@@ -161,8 +169,8 @@ public class BST {
     }
 
     /**
-     * Prints the tree with the given root in inorder, indenting
-     * each line to the given level
+     * Prints the tree with the given root, inorder, indenting each line to
+     * the given level
      * @param node the node that roots the tree
      * @param level the current depth level
      */
@@ -201,6 +209,9 @@ public class BST {
     }
 
 
+    /**
+     * Inner class representing a Node in the Binary Search Tree
+     */
     public class Node {
         public int data;
         public Node left;
@@ -212,8 +223,6 @@ public class BST {
             this.right = null;
         }
     }
-
-
 }
 
 
