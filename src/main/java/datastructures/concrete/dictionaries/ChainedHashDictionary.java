@@ -2,6 +2,7 @@ package datastructures.concrete.dictionaries;
 
 import datastructures.concrete.KVPair;
 import datastructures.interfaces.IDictionary;
+import misc.exceptions.NoSuchKeyException;
 import misc.exceptions.NotYetImplementedException;
 
 import java.util.Iterator;
@@ -13,11 +14,15 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
     // You may not change or rename this field: we will be inspecting
     // it using our private tests.
     private IDictionary<K, V>[] chains;
+    private int capacity;
+    private int size;
 
     // You're encouraged to add extra fields (and helper methods) though!
 
     public ChainedHashDictionary() {
-        throw new NotYetImplementedException();
+        this.chains = this.makeArrayOfChains(100);
+        this.capacity = 100;
+        this.size = 0;
     }
 
     /**
@@ -34,29 +39,65 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
         return (IDictionary<K, V>[]) new IDictionary[size];
     }
 
+    private void expand() {
+        this.capacity = this.capacity*2;
+        IDictionary<K, V>[] newChains = makeArrayOfChains(this.capacity);
+        for (int i = 0; i < this.capacity/2; i++) {
+            newChains[i] = this.chains[i];
+        }
+        this.chains = newChains;
+        System.out.println("The capacity field is now updated to: " + this.capacity);
+    }
+
+    // Pass in a key and return an integer hash
+    private int getIndex(K key) {
+        if(key == null)
+            return 0;
+        int hash = key.hashCode();
+        hash = hash % this.capacity;
+        return hash;
+    }
+
     @Override
     public V get(K key) {
-        throw new NotYetImplementedException();
+        int index = getIndex(key);
+        if(!this.containsKey(key))
+            throw new NoSuchKeyException();
+        return this.chains[index].get(key);
     }
 
     @Override
     public void put(K key, V value) {
-        throw new NotYetImplementedException();
+        if (this.size >= this.capacity) {
+            this.expand();
+        }
+        int index = this.getIndex(key);
+        if(this.chains[index] == null) {
+            this.chains[index] = new ArrayDictionary<K, V>();
+        }
+        if(!this.containsKey(key))
+            this.size++;
+        this.chains[index].put(key,value);
     }
 
     @Override
     public V remove(K key) {
-        throw new NotYetImplementedException();
+        if(!this.containsKey(key))
+            throw new NoSuchKeyException();
+        int index = this.getIndex(key);
+        this.size--;
+        return this.chains[index].remove(key);
     }
 
     @Override
     public boolean containsKey(K key) {
-        throw new NotYetImplementedException();
+        int index = this.getIndex(key);
+        return this.chains[index] != null && this.chains[index].containsKey(key);
     }
 
     @Override
     public int size() {
-        throw new NotYetImplementedException();
+        return this.size;
     }
 
     @Override

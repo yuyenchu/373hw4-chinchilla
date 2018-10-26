@@ -5,6 +5,7 @@ import datastructures.interfaces.IDictionary;
 import misc.exceptions.NoSuchKeyException;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * TODO: Replace this file with the one you wrote from project 1
@@ -56,7 +57,7 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
 
     private int indexOf(K key) {
         for (int i = 0; i < size; i++) {
-            if (key == pairs[i].key || (key != null && pairs[i].key.equals(key))) {
+            if (key == pairs[i].key || (key != null && pairs[i].key != null && pairs[i].key.equals(key))) {
                 return i;  
             }
         }
@@ -115,8 +116,7 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
 
     @Override
     public Iterator<KVPair<K, V>> iterator() {
-        //throw new NotYetImplementedException();
-        return null;
+        return new DictIterator<>(this.pairs);
     }
         
     private static class Pair<K, V> {
@@ -132,6 +132,31 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
         @Override
         public String toString() {
             return this.key + "=" + this.value;
+        }
+    }
+
+    private class DictIterator<K, V> implements Iterator<KVPair<K, V>> {
+        private Pair<K, V>[] pairs;
+        private int index;
+
+        public DictIterator(Pair<K, V>[] pairs) {
+            this.pairs = pairs;
+            this.index = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (index < size);
+        }
+
+        @Override
+        public KVPair<K, V> next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            KVPair<K, V> result = new KVPair<K, V>(pairs[index].key, pairs[index].value);
+            this.index += 1;
+            return result;
         }
     }
 }
