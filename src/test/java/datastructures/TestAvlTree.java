@@ -46,6 +46,20 @@ public class TestAvlTree extends BaseTest {
     }
 
     @Test(timeout = SECOND)
+    public void testValidAVLTreeSpecial() {
+        BST tree = new BST();
+        tree.insert(10);
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(2);
+        tree.insert(7);
+        tree.printSideways();
+        tree.getRoot().left.right.data = 14;
+        tree.printSideways();
+        assertEquals(false, tree.isValidAVL());        
+    }
+
+    @Test(timeout = SECOND)
     public void testValidAVLTreeExceptionPositive() {
         BST tree = new BST();
         tree.insert(2);
