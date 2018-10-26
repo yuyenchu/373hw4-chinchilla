@@ -112,12 +112,12 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
         return size;
         //throw new NotYetImplementedException();
     }
-
+/*
     @Override
     public Iterator<KVPair<K, V>> iterator() {
         //throw new NotYetImplementedException();
     }
-    
+*/    
     private static class Pair<K, V> {
         public K key;
         public V value;
