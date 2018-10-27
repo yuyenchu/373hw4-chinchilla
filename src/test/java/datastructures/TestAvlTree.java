@@ -27,7 +27,7 @@ public class TestAvlTree extends BaseTest {
     @Test(timeout = SECOND)
     public void testValidAVLTreeHappyPositive() {
         // Creates a Binary Search Tree with the given values provided in insertion order.
-        BST tree = new BST(new int[]{6,3,7,8,2,4});
+        BST tree = new BST(new int[]{6, 3, 7, 8, 2, 4});
 
         // helper methods to print/see your BST
         //tree.printInorder();
@@ -40,7 +40,7 @@ public class TestAvlTree extends BaseTest {
 
     @Test(timeout = SECOND)
     public void testValidAVLTreeHappyNegative() {
-        BST tree = new BST(new int[]{2,3,4,6,7,8});
+        BST tree = new BST(new int[]{2, 3, 4, 6, 7, 8});
         // Set the expected value to true if the your BST is a valid AVL tree, otherwise set it to false.
         assertEquals(false, tree.isValidAVL());        
     }
@@ -56,8 +56,9 @@ public class TestAvlTree extends BaseTest {
 
         //tree.printSideways();
         //tree.printSideways();
-        for(int i = 0; i < 10000; i++)
-            assertEquals(true, tree.isValidAVL());        
+        for (int i = 0; i < 10000; i++) {
+            assertEquals(true, tree.isValidAVL());  
+        }
     }
 
     @Test(timeout = SECOND)

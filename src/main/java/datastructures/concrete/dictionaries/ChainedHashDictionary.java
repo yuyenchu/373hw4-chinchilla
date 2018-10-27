@@ -3,7 +3,6 @@ package datastructures.concrete.dictionaries;
 import datastructures.concrete.KVPair;
 import datastructures.interfaces.IDictionary;
 import misc.exceptions.NoSuchKeyException;
-import misc.exceptions.NotYetImplementedException;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -45,13 +44,14 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
         IDictionary<K, V>[] newChains = makeArrayOfChains(this.capacity);
         for (int i = 0; i < this.capacity/2; i++) {
             if (this.chains[i] != null) {
-                for(KVPair<K, V> pair : this.chains[i]) {
+                for (KVPair<K, V> pair : this.chains[i]) {
                     K key = pair.getKey();
                     V value = pair.getValue();
                     int index = this.getIndex(key);
-                    if(newChains[index] == null)
+                    if (newChains[index] == null) {
                         newChains[index] = new ArrayDictionary<K, V>();
-                    newChains[index].put(key,value);
+                    }
+                    newChains[index].put(key, value);
                 }
             }
         }
@@ -60,8 +60,9 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
 
     // Pass in a key and return an integer hash
     private int getIndex(K key) {
-        if(key == null)
+        if (key == null) {
             return 0;
+        }
         int hash = key.hashCode();
         hash = Math.abs(hash);
         hash = hash % this.capacity;
@@ -71,8 +72,9 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
     @Override
     public V get(K key) {
         int index = getIndex(key);
-        if(!this.containsKey(key))
+        if (!this.containsKey(key)) {
             throw new NoSuchKeyException();
+        }
         return this.chains[index].get(key);
     }
 
@@ -82,18 +84,20 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
             this.expand();
         }
         int index = this.getIndex(key);
-        if(this.chains[index] == null) {
+        if (this.chains[index] == null) {
             this.chains[index] = new ArrayDictionary<K, V>();
         }
-        if(!this.containsKey(key))
+        if (!this.containsKey(key)) {
             this.size++;
-        this.chains[index].put(key,value);
+        }
+        this.chains[index].put(key, value);
     }
 
     @Override
     public V remove(K key) {
-        if(!this.containsKey(key))
+        if (!this.containsKey(key)) {
             throw new NoSuchKeyException();
+        }
         int index = this.getIndex(key);
         this.size--;
         return this.chains[index].remove(key);
@@ -165,7 +169,7 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
 
         public ChainedIterator(IDictionary<K, V>[] chains) {
             this.chains = chains;
-            for(int i = 0; i < chains.length; i++) {
+            for (int i = 0; i < chains.length; i++) {
                 if (chains[i] != null) {
                     chainNum = i;
                     chainIter = chains[chainNum].iterator();
@@ -180,7 +184,7 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
                 return false;
             }
             if (!chainIter.hasNext()){
-                for(int i = chainNum+1; i < chains.length; i++) {
+                for (int i = chainNum+1; i < chains.length; i++) {
                     if (chains[i] != null) {
                         chainNum = i;
                         chainIter = chains[chainNum].iterator();

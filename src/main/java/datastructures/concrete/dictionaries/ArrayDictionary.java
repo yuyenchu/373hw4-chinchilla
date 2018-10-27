@@ -7,10 +7,7 @@ import misc.exceptions.NoSuchKeyException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * TODO: Replace this file with the one you wrote from project 1
- * TODO: Add the missing "iterator()" method
- */
+
 public class ArrayDictionary<K, V> implements IDictionary<K, V> {
     // You may not change or rename this field: we will be inspecting
     // it using our private tests.
@@ -135,11 +132,11 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
         }
     }
 
-    private class DictIterator<K, V> implements Iterator<KVPair<K, V>> {
-        private Pair<K, V>[] pairs;
+    private class DictIterator<k, v> implements Iterator<KVPair<k, v>> {
+        private Pair<k, v>[] pairs;
         private int index;
 
-        public DictIterator(Pair<K, V>[] pairs) {
+        public DictIterator(Pair<k, v>[] pairs) {
             this.pairs = pairs;
             this.index = 0;
         }
@@ -150,11 +147,11 @@ public class ArrayDictionary<K, V> implements IDictionary<K, V> {
         }
 
         @Override
-        public KVPair<K, V> next() {
-            if(!hasNext()) {
+        public KVPair<k, v> next() {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            KVPair<K, V> result = new KVPair<K, V>(pairs[index].key, pairs[index].value);
+            KVPair<k, v> result = new KVPair<k, v>(pairs[index].key, pairs[index].value);
             this.index += 1;
             return result;
         }
