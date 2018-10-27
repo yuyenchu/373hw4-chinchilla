@@ -6,6 +6,7 @@ import misc.exceptions.NoSuchKeyException;
 import misc.exceptions.NotYetImplementedException;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * See the spec and IDictionary for more details on what each method should do
@@ -167,15 +168,19 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
             for(int i = 0; i < chains.length; i++) {
                 if (chains[i] != null) {
                     chainNum = i;
+                    chainIter = chains[chainNum].iterator();
+                    break;
                 }
             }
-            chainIter = chains[chainNum].iterator();
         }
 
         @Override
         public boolean hasNext() {
+            if (chainIter == null) {
+                return false;
+            }
             if (!chainIter.hasNext()){
-                for(int i = chainNum; i < chains.length; i++) {
+                for(int i = chainNum+1; i < chains.length; i++) {
                     if (chains[i] != null) {
                         chainNum = i;
                         chainIter = chains[chainNum].iterator();
@@ -190,6 +195,9 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
 
         @Override
         public KVPair<K, V> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
             return chainIter.next();
             //throw new NotYetImplementedException();
         }
