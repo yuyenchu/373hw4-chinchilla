@@ -50,10 +50,14 @@ public class TestAvlTree extends BaseTest {
         BST tree = new BST();
         tree.insert(10);
         tree.insert(5);
+        tree.insert(15);
+        tree.insert(2);
+        tree.insert(7);
+
         //tree.printSideways();
-        tree.getRoot().left.data = 1;
         //tree.printSideways();
-        assertEquals(true, tree.isValidAVL());        
+        for(int i = 0; i < 10000; i++)
+            assertEquals(true, tree.isValidAVL());        
     }
 
     @Test(timeout = SECOND)
