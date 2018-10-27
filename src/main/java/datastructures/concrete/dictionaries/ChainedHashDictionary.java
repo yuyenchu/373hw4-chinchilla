@@ -159,19 +159,39 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
      */
     private static class ChainedIterator<K, V> implements Iterator<KVPair<K, V>> {
         private IDictionary<K, V>[] chains;
+        private Iterator<KVPair<K, V>> chainIter;
+        private int chainNum;
 
         public ChainedIterator(IDictionary<K, V>[] chains) {
             this.chains = chains;
+            for(int i = 0; i < chains.length; i++) {
+                if (chains[i] != null) {
+                    chainNum = i;
+                }
+            }
+            chainIter = chains[chainNum].iterator();
         }
 
         @Override
         public boolean hasNext() {
-            throw new NotYetImplementedException();
+            if (!chainIter.hasNext()){
+                for(int i = chainNum; i < chains.length; i++) {
+                    if (chains[i] != null) {
+                        chainNum = i;
+                        chainIter = chains[chainNum].iterator();
+                        return hasNext();
+                    }
+                }
+                return false;
+            }
+            return true;
+            //throw new NotYetImplementedException();
         }
 
         @Override
         public KVPair<K, V> next() {
-            throw new NotYetImplementedException();
+            return chainIter.next();
+            //throw new NotYetImplementedException();
         }
     }
 }
