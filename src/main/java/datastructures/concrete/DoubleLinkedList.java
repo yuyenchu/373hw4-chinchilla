@@ -6,9 +6,7 @@ import misc.exceptions.EmptyContainerException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * TODO: Replace this file with the one you wrote from project 1
- */
+
 public class DoubleLinkedList<T> implements IList<T> {
     // You may not rename these fields or change their types.
     // We will be inspecting these in our private tests.
