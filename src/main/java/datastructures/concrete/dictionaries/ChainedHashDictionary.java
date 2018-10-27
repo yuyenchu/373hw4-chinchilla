@@ -43,10 +43,18 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
         this.capacity = this.capacity*2;
         IDictionary<K, V>[] newChains = makeArrayOfChains(this.capacity);
         for (int i = 0; i < this.capacity/2; i++) {
-            newChains[i] = this.chains[i];
+            if (this.chains[i] != null) {
+                for(KVPair<K, V> pair : this.chains[i]) {
+                    K key = pair.getKey();
+                    V value = pair.getValue();
+                    int index = this.getIndex(key);
+                    if(newChains[index] == null)
+                        newChains[index] = new ArrayDictionary<K, V>();
+                    newChains[index].put(key,value);
+                }
+            }
         }
         this.chains = newChains;
-        System.out.println("The capacity field is now updated to: " + this.capacity);
     }
 
     // Pass in a key and return an integer hash
@@ -54,6 +62,7 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
         if(key == null)
             return 0;
         int hash = key.hashCode();
+        hash = Math.abs(hash);
         hash = hash % this.capacity;
         return hash;
     }
