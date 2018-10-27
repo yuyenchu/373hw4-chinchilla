@@ -53,9 +53,9 @@ public class TestAvlTree extends BaseTest {
         tree.insert(15);
         tree.insert(2);
         tree.insert(7);
-        tree.printSideways();
-        tree.getRoot().left.right.data = 14;
-        tree.printSideways();
+        //tree.printSideways();
+        tree.getRoot().left.right.data = 1;
+        //tree.printSideways();
         assertEquals(false, tree.isValidAVL());        
     }
 
