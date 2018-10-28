@@ -32,11 +32,11 @@ public class ChainedHashDictionary<K, V> implements IDictionary<K, V> {
      * Note that each element in the array will initially be null.
      */
     @SuppressWarnings("unchecked")
-    private IDictionary<K, V>[] makeArrayOfChains(int size) {
+    private IDictionary<K, V>[] makeArrayOfChains(int arrSize) {
         // Note: You do not need to modify this method.
         // See ArrayDictionary's makeArrayOfPairs(...) method for
         // more background on why we need this method.
-        return (IDictionary<K, V>[]) new IDictionary[size];
+        return (IDictionary<K, V>[]) new IDictionary[arrSize];
     }
 
     private void expand() {
