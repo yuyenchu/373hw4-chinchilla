@@ -144,6 +144,7 @@ public class TestAvlTree extends BaseTest {
         assertEquals(false, tree.isValidAVL());        
     }
     
+    @Test(timeout = SECOND)
     public void testValidAVLTreeCase2() {
         BST tree = new BST();
         assertEquals(true, tree.isValidAVL());
@@ -154,6 +155,24 @@ public class TestAvlTree extends BaseTest {
         tree.insert(3);
         assertEquals(true, tree.isValidAVL());
         tree.getRoot().right.left.data = 1;
+        assertEquals(false, tree.isValidAVL());        
+    }
+    
+    @Test(timeout = SECOND)
+    public void testValidAVLTreeCase3() {
+        BST tree = new BST();
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(3);
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(2);
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(4);
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(1);
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(5);
+        assertEquals(true, tree.isValidAVL());
+        tree.insert(0);
         assertEquals(false, tree.isValidAVL());        
     }
     /*
