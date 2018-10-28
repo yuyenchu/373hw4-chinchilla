@@ -154,4 +154,12 @@ public class TestChainedHashDictionary extends TestDictionary {
             dict.remove(i);
         }
     }
+    
+    @Test(timeout=10*SECOND)
+    public void hoangTest() {
+        IDictionary<Integer, Integer> dict = this.newDictionary();
+        dict.put(1, 1);
+        dict.put(2, 2);
+        assertFalse(dict.containsKey(-1));
+    }
 }

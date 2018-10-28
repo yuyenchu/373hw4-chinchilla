@@ -323,11 +323,9 @@ public abstract class TestDictionary extends BaseTest {
     public void testGetMany() {
         IDictionary<String, String> dict = this.makeBasicDictionary();
         int cap = 100000;
-
         for (int i = 0; i < cap; i++) {
             dict.put("keyC", "newValC");
         }
-
         for (int i = 0; i < cap; i++) {
             assertEquals("newValC", dict.get("keyC"));
         }
