@@ -183,7 +183,7 @@ public class TestAvlTree extends BaseTest {
         tree.insert(2);
         assertEquals(true, tree.isValidAVL());
         tree.insert(1);
-        tree.insert(4);
+        tree.insert(5);
         tree.insert(4);
         assertEquals(true, tree.isValidAVL());
         tree.insert(3);
