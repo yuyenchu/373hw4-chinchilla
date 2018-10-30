@@ -198,10 +198,10 @@ public class TestAvlTree extends BaseTest {
         assertEquals(true, tree.isValidAVL());
     } 
     
-    @Test(timeout = 300 * SECOND)
+    @Test(timeout = 1200 * SECOND)
     public void testValidAVLTreeCase5() {
         List<Integer> list = new ArrayList<Integer>();
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= 10; i++) {
             list.add(i);
         }
         loop(list, new Stack<Integer>());
