@@ -201,7 +201,7 @@ public class TestAvlTree extends BaseTest {
     @Test(timeout = 300 * SECOND)
     public void testValidAVLTreeCase5() {
         List<Integer> list = new ArrayList<Integer>();
-        for (int i = 1; i <= 15; i++) {
+        for (int i = 1; i <= 8; i++) {
             list.add(i);
         }
         loop(list, new Stack<Integer>());
