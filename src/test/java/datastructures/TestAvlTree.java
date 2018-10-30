@@ -4,6 +4,8 @@ import datastructures.concrete.BST;
 import datastructures.concrete.BST.Node;
 import misc.BaseTest;
 import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class TestAvlTree extends BaseTest {
@@ -194,15 +196,19 @@ public class TestAvlTree extends BaseTest {
         assertEquals(false, tree.isValidAVL());
         tree.insert(6);
         assertEquals(true, tree.isValidAVL());
-    }  
+    } 
     
     @Test(timeout = 60 * SECOND)
     public void testValidAVLTreeCase5() {
-        loop(new Stack<Integer>(), 17);
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 1; i <= 15; i++) {
+            list.add(i);
+        }
+        loop(list, new Stack<Integer>());
     } 
     
-    private void loop(Stack<Integer> s, int i) {
-        if (i == 0) {
+    private void loop(List<Integer> list, Stack<Integer> s) {
+        if (list.isEmpty()) {
             BST tree = new BST();
             Stack<Integer> temp = new Stack<Integer>();
             while (!s.empty()) {
@@ -214,10 +220,10 @@ public class TestAvlTree extends BaseTest {
                 s.push(temp.pop());
             }
         } else {
-            for (int j = 0; j < i; j++) {
-                s.push(j);
-                loop(s, i - 1);
-                s.pop();
+            for (int j = 0; j < list.size(); j++) {
+                s.push(list.remove(j));
+                loop(list, s);
+                list.add(j, s.pop());
             }
         }
     }
