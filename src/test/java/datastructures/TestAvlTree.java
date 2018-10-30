@@ -1,8 +1,10 @@
 package datastructures;
 
 import datastructures.concrete.BST;
+import datastructures.concrete.BST.Node;
 import misc.BaseTest;
 import org.junit.Test;
+import java.util.Stack;
 
 public class TestAvlTree extends BaseTest {
 
@@ -192,7 +194,51 @@ public class TestAvlTree extends BaseTest {
         assertEquals(false, tree.isValidAVL());
         tree.insert(6);
         assertEquals(true, tree.isValidAVL());
-    }    
+    }  
+    
+    @Test(timeout = 10 * SECOND)
+    public void testValidAVLTreeCase5() {
+        loop(new Stack<Integer>(), 32);
+
+    } 
+    
+    private void loop(Stack<Integer> s, int i) {
+        if (i == 0) {
+            BST tree = new BST();
+            Stack<Integer> temp = new Stack<Integer>();
+            while (!s.empty()) {
+                tree.insert(s.peek());
+                temp.push(s.pop());
+                assertEquals(traverseCheck(tree.getRoot()), tree.isValidAVL());
+            }
+            while (!temp.empty()) {
+                s.push(temp.pop());
+            }
+        } else {
+            for (int j = 0; j < i; j++) {
+                s.push(j);
+                loop(s, i - 1);
+                s.pop();
+            }
+        }
+    }
+    
+    private boolean traverseCheck(Node root) {
+        if (root == null) {
+            return true;
+        } else if (Math.abs(height(root.left) - height(root.right)) > 1) {
+            return false;
+        } 
+        return traverseCheck(root.left) && traverseCheck(root.right);
+    }
+    
+
+    private int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return Math.max(height(node.left), height(node.right)) + 1;
+    }
     /*
      * Instructions:
      *
