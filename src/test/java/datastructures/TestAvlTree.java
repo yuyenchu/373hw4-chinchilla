@@ -198,8 +198,7 @@ public class TestAvlTree extends BaseTest {
     
     @Test(timeout = 60 * SECOND)
     public void testValidAVLTreeCase5() {
-        loop(new Stack<Integer>(), 32);
-
+        loop(new Stack<Integer>(), 17);
     } 
     
     private void loop(Stack<Integer> s, int i) {
