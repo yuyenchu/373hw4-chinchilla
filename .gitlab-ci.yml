@@ -12,6 +12,8 @@ Compile:
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-compile.sh
     - sh hw4-compile.sh
+  tags:
+    - compile
 
 
 DoubleLinkedlist:
@@ -19,6 +21,8 @@ DoubleLinkedlist:
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-dll.sh
     - sh hw4-dll.sh
+  tags:
+    - testdll
 
 
 HashDictionary:
@@ -26,6 +30,8 @@ HashDictionary:
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-hash.sh
     - sh hw4-hash.sh
+  tags:
+    - testhash
 
 
 IsValidAVL:
@@ -34,7 +40,7 @@ IsValidAVL:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-avltest.sh
     - sh hw4-avltest.sh
   tags:
-    - gitlab05
+    - testavl
 
 
 StyleCheck:
@@ -42,4 +48,5 @@ StyleCheck:
   script:
     - wget -q https://courses.cs.washington.edu/courses/cse373/18au/files/hw_scripts/hw4-stylecheck.sh
     - sh hw4-stylecheck.sh
-
+  tags:
+    - stylecheck
