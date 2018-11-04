@@ -175,6 +175,11 @@ public class DoubleLinkedList<T> implements IList<T> {
 
     @Override
     public boolean contains(T other) {
+        try {
+            indexOf(other);
+        } catch(Exception e) {
+            return false;
+        }
         return indexOf(other) != -1;
     }
 
